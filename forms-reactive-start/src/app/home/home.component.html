@@ -1,0 +1,24 @@
+<h3>HOME COMPONENT</h3>
+<form (ngSubmit)="submit()" [formGroup]="formProject">
+  <div class="form-group">
+    <label>Project Name</label>
+    <input type="text" formControlName="projectName" class="form-control">
+    <span class="help-block" *ngIf="!formProject.get('projectName').valid && formProject.get('projectName').touched">Project name required</span>
+    <span class="help-block" *ngIf="formProject.get('projectName').errors && formProject.get('projectName').errors['forbbidenName']">
+      {{ formProject.get('projectName').errors['forbbidenName'] }}
+    </span>
+  </div>
+  <div class="form-group">
+    <label>Mail</label>
+    <input type="email" formControlName="mail" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Project Status</label>
+    <select formControlName="projectStatus" class="form-control">
+      <option *ngFor="let status of projectStatus" [value]="status">{{ status }}</option>
+    </select>
+  </div>
+
+  <button class="btn btn-primary" [disabled]="!formProject.valid" type="submit">Submit</button>
+
+</form>
